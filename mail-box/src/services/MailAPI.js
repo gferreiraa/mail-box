@@ -7,5 +7,11 @@ const axiosInstance = axios.create({
 export const api = {
   get(endpoint) {
     return axiosInstance.get(endpoint);
+  },
+  put(endpoint, body) {
+    return axiosInstance.put(`${endpoint}/${body.id}`, {
+      ...body,
+      ...{ read: !body.read }
+    });
   }
 };

@@ -1,16 +1,18 @@
 <template>
     <div class="listmail">
         <ul class="has-text-left">
-                <li v-for="message in messages" :key="message.id">
+            <a @click="readMail(message)" v-for="message in messages" :key="message.id">
+                <li >
                     <div class="card card-details">
-                        <span class="has-text-success bullet"><i class="fas fa-circle"></i></span>
-                        <span class="has-text-black-bis"><strong>{{message.full_name}}</strong> - </span>  
+                        <span :class="[message.read ? 'has-text-success bullet' : 'has-text-grey-light bullet']"><i class="fas fa-circle"></i></span>
+                        <span :class="[message.read ? 'has-text-black-bis strongtext' : 'has-text-black-bis']">{{message.full_name}} - </span>  
                         <span class="has-text-grey-dark">{{message.mail_subject}} - </span>   
                         <span class="has-text-grey">{{message.body | subStr}} - </span>   
                         <span class="has-text-grey">{{message.date}} / </span>   
                         <span class="has-text-grey-dark">{{message.hour}}</span>   
                     </div>
                 </li>
+            </a>
         </ul>
     </div>
 </template>
@@ -32,16 +34,26 @@
                     .then(data => {
                         this.messages = data
                     })
+            },
+            readMail(_mail) {
+                this.$store.commit({
+                    type: "READ_MAIL",
+                    mail: _mail
+                })
+                this.$router.push("/mail");
+            },
+            updateMail(){
+                this.$store.dispatch("updateRead", this.$store.getters.getCurrentMail);
             }
         },
-          filters: {
-            subStr(value) {
-                return value.substr(0, 20) + '...';
+        filters: {
+            subStr(msg) {
+                return msg.substr(0, 20) + '...';
             }
         },
         created() {
             this.getMails();
-        },
+        }
     }
 </script>
 
@@ -52,8 +64,6 @@
         transition: all .5s ease;
     }
     li:hover {
-        cursor: pointer;
-        font-size: 1.1rem;
         background: #fafafa;
     }
     .listmail {
@@ -65,6 +75,9 @@
     }
     .bullet {
         padding-right: 20px;
+    }
+    .strongtext {
+        font-weight: bold;   
     }
 </style>
 
