@@ -1,6 +1,13 @@
 <template>
     <div class="sidebar">
-        <li>test</li>
+        <hr>
+        <ul class="has-text-left">
+            <li>Inbox <span class="number-mail"><strong>1</strong></span></li>
+            <li>Important</li>
+            <li>Sent</li>
+            <li>Draft</li>
+            <li>Spam</li>
+        </ul>
     </div>
 </template>
 
@@ -11,16 +18,22 @@
 </script>
 
 <style scoped>
-    .sidebar {
+    li {
+        color: black;
+        font-size: 16px;
+        padding: 10px;
+    }
+    li:hover{
+        cursor: pointer;
         background: #fafafa;
+    }
+    .sidebar {
+        /*background: #fafafa;*/
         margin-top: 20px;
         padding: 5px;
     }
-    .main{
-        padding: 40px;
-    }
-    .item{
-            display: block;
-    padding: 10px 0;
-    }
+    .number-mail {
+        padding-left: 100px;
+        font-weight: bold;
+}
 </style>

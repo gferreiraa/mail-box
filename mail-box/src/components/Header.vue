@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar has-shadow">
         <div class="container">
-            <div class="navbar-brand">
+            <div class="navbar-brand has-text-centered">
                 <a class="navbar-item" href="../">
-                    <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox">
+                    <img src="../assets/brand.png" alt="Bulma: a modern CSS framework based on Flexbox">
                 </a>
             </div>
         </div>
